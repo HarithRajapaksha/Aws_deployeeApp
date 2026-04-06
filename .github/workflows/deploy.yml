@@ -27,11 +27,12 @@ jobs:
   #Transfer build file to the  EC2 server
       - name: Deploy to EC2
         uses: appleboy/scp-action@master
-
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_KEY }}
+          port: 22
           source: "dist/"
           target: "/var/www/html/"
           strip_components: 1
+          timeout: 120s
